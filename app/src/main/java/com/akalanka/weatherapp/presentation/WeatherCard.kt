@@ -1,8 +1,10 @@
 package com.akalanka.weatherapp.presentation
 
+import android.graphics.Paint.Style
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -13,18 +15,26 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.akalanka.weatherapp.R.drawable
 import java.time.format.DateTimeFormatter
 import kotlin.math.roundToInt
 
+@Preview(showBackground = true)
 @Composable
+
+
+
 fun WeatherCard(
     state: WeatherState,
     backgroundColor: Color,
     modifier: Modifier = Modifier
 ) {
+    var location_name_get = MainActivity().cityname
+    var final_location_name = location_name_get.toString()
     state.weatherInfo?.currentWeatherData?.let { data ->
         Card(
             backgroundColor = backgroundColor,
@@ -37,6 +47,7 @@ fun WeatherCard(
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+
                 Text(
                     text = "Today ${
                         data.time.format(
@@ -65,6 +76,12 @@ fun WeatherCard(
                     color = Color.White
                 )
                 Spacer(modifier = Modifier.height(32.dp))
+
+                //location button
+                locationDataDisplay(location_name = final_location_name, icon = ImageVector.vectorResource(id = drawable.ic_seclocation_svgrepo_com))
+               Spacer(modifier = Modifier.height(38.dp))
+
+
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceAround
@@ -95,3 +112,4 @@ fun WeatherCard(
         }
     }
 }
+

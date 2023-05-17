@@ -1,13 +1,22 @@
 package com.akalanka.weatherapp.presentation
 
+import android.location.Geocoder
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+
+import androidx.activity.viewModels
+
+import com.google.android.gms.location.LocationServices
+import java.util.*
 import android.Manifest
 
 import android.location.Address
-import android.location.Geocoder
-import android.os.Bundle
+
+
 
 import androidx.activity.ComponentActivity
 import android.location.Location
+import android.nfc.Tag
 import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -38,70 +47,17 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
-
-@AndroidEntryPoint
-class MainActivity : ComponentActivity() {
-
-    private val viewModel: WeatherViewModel by viewModels()
+class GetLocationName : AppCompatActivity() {
     private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
     lateinit var mFusedLocationProviderClient: FusedLocationProviderClient
-    private val TAG="MainActivity "
-    public var cityname = "Gampaha"
-    //public lateinit var cityname:String
+    //public var cityname = "dfgdfggghgdh"
+    private val TAG = "GetLocationName"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        updateLocation()
-
-        //methana idn thiyenne anith code
-
-        permissionLauncher = registerForActivityResult(
-            ActivityResultContracts.RequestMultiplePermissions()
-        ) {
-            viewModel.loadWeatherInfo()
-        }
-        permissionLauncher.launch(arrayOf(
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.ACCESS_COARSE_LOCATION,
-        ))
-        setContent {
-            WeatherAppTheme {
-                Box(
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(DarkBlue)
-                    ) {
-                        WeatherCard(
-                            state = viewModel.state,
-                            backgroundColor = DeepBlue
-                        )
-                        Spacer(modifier = Modifier.height(16.dp))
-                        WeatherForecast(state = viewModel.state)
-                    }
-                    if(viewModel.state.isLoading) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.align(Alignment.Center)
-                        )
-                    }
-                    viewModel.state.error?.let { error ->
-                        Text(
-                            text = error,
-                            color = Color.Red,
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.align(Alignment.Center)
-                        )
-                    }
-                }
-            }
-        }
+        //updateLocation()
     }
-
-
-
-    fun updateLocation() {
+   /* fun updateLocation() {
         var locationRequest = LocationRequest()
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         locationRequest.interval = 10000
@@ -142,10 +98,15 @@ class MainActivity : ComponentActivity() {
 
 
 
-//        var  get_city_name = addressList.get(0).subAdminArea
-//        MainActivity().cityName = get_city_name.toString()
+        //var  city_name2 = "akalanka"//addressList.get(0).subAdminArea.toString()
+        //MainActivity().cityName = "dfsrtgfdgsty"//city_name2
+
         Log.d(TAG,""+addressList.get(0).subAdminArea)
 
 
     }
-}
+
+*/
+
+
+    }
