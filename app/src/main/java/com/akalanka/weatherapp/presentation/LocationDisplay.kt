@@ -18,6 +18,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
+//object MyFile {
+//    var myVar: String = ""
+//
+//    fun myFunction() {
+//        // Use the value of myVar for further processing or storage
+//        // For example:
+//        val processedValue = myVar.toUpperCase()
+//        // ... do something with the processed value
+//    }
+//}
+
 
 fun locationDataDisplay(
     location_name: String,

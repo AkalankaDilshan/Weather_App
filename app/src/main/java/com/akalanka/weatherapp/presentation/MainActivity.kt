@@ -46,8 +46,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
     lateinit var mFusedLocationProviderClient: FusedLocationProviderClient
     private val TAG="MainActivity "
-    public var cityname = "Gampaha"
-    //public lateinit var cityname:String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,7 +101,7 @@ class MainActivity : ComponentActivity() {
 
 
     fun updateLocation() {
-        var locationRequest = LocationRequest()
+        val locationRequest = LocationRequest()
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         locationRequest.interval = 10000
         locationRequest.fastestInterval = 5000
@@ -129,7 +128,7 @@ class MainActivity : ComponentActivity() {
 
     fun updateAddressUI(location: Location) {
 
-        var geocoder: Geocoder
+        val geocoder: Geocoder
         var addressList = ArrayList<Address>()
 
         geocoder = Geocoder(applicationContext, Locale.getDefault())
@@ -140,11 +139,15 @@ class MainActivity : ComponentActivity() {
             1
         ) as ArrayList<Address>
 
+        //get massage for if we get correct city name
+        Log.d(TAG,""+addressList.get(0))
 
 
-//        var  get_city_name = addressList.get(0).subAdminArea
-//        MainActivity().cityName = get_city_name.toString()
-        Log.d(TAG,""+addressList.get(0).subAdminArea)
+       //vall CityName Object
+        val myVar = addressList.get(0).subAdminArea
+        CityName.Current_city = myVar.toString()
+        CityName.myFunction()
+
 
 
     }

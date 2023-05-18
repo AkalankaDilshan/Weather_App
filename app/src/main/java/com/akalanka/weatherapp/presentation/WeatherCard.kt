@@ -33,7 +33,7 @@ fun WeatherCard(
     backgroundColor: Color,
     modifier: Modifier = Modifier
 ) {
-    var location_name_get = MainActivity().cityname
+    var location_name_get = CityName.myFunction()
     var final_location_name = location_name_get.toString()
     state.weatherInfo?.currentWeatherData?.let { data ->
         Card(
